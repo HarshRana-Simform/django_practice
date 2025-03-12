@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}All posts{% endblock title %}
+  {% comment %} Django Template Language {% endcomment %}
+{% block content %}
+{% comment %} Title rendered through a context_processor. {% endcomment %}
+<h1 class="d-flex justify-content-center mt-3">{{Posts|capfirst}}</h1>
+
+  <div class="container d-flex-column justify-content-center align-items-center">
+  <a href="{% url 'add_post' %}">
+    <button type="button" class="btn btn-primary" >Add Post</button>
+  </a>
+  {% if blogs %}
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Title</th>
+              <th scope="col">Content</th>
+              <th scope="col">Author</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+        {% for blog in blogs%}
+          <tbody>
+            <tr>
+              <td>{{blog.id}}</th>
+
+              <td>
+                <a href={% url "post" blog.id %}>
+                  {{blog.title|title}}
+                </a>
+              </td>
+
+              <td>{{blog.content|truncatewords:5}}</td>
+              <td>{{blog.author}}</td>
+
+              <td>
+                <a href="{% url 'update' blog.id  %}"><button type="button" class="btn btn-info">Update</button></a>
+                <a href="{% url 'delete' blog.id  %}"><button type="button" class="btn btn-danger">Delete</button></a>
+              </td>
+            </tr>
+        {% endfor %}
+        </table>
+
+  {% else %}
+    <div>
+      <h1>No Posts Available!</h1>
+    </div>
+  {% endif %}
+  </div>
+{% endblock content %}

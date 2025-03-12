@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Post Added
+{% endblock title %}
+
+{% block content %}
+<div class="container d-flex-column justify-content-center align-items-center mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Success!</h1>
+        <p class="lead">Your post was created successfully.</p>
+        <hr class="my-4">
+        {% comment %} <p>It uses utility classes for typography and spacing to space content out within the larger container.</p> {% endcomment %}
+        <p class="lead">
+        <a class="btn btn-primary btn-lg" href="{% url 'all_post' %}" role="button">All posts</a>
+        </p>
+    </div>
+</div>
+{% endblock content %}

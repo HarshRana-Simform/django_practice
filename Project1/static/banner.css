@@ -1,0 +1,6 @@
+.banner img {
+    width: auto;
+    height: 450px;
+    object-fit: fill;
+    /* or 'contain' depending on your needs */
+}

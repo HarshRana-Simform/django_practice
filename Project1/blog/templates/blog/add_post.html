@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Add Post
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">{% if form.instance.id %}Update your Post{% else %}Create a New Post{% endif %}</h2>
+    <form action='' method='POST' novalidate>
+        {% csrf_token %}
+
+        <!-- Title Field -->
+        <div class="mb-3">
+            <label for="{{ form.title.id_for_label }}" class="form-label">{{ form.title.label }}</label>
+            <input class="form-control" name="{{ form.title.name }}" id="{{ form.title.id_for_label }}" type="text" placeholder="Enter the title" value="{{ form.title.value|default:'' }}">
+            {% if form.title.errors %}
+                <div class="text-danger">
+                    {% for error in form.title.errors %}
+                        <p> * {{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Author Field -->
+        <div class="mb-3">
+            <label for="{{ form.author.id_for_label }}" class="form-label">{{ form.author.label }}</label>
+            <input class="form-control" name="{{ form.author.name }}" id="{{ form.author.id_for_label }}" type="text" placeholder="Enter author name" value="{{ form.author.value|default:'' }}">
+            {% if form.author.errors %}
+                <div class="text-danger">
+                    {% for error in form.author.errors %}
+                        <p> * {{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Content Field -->
+        <div class="mb-3">
+            <label for="{{ form.content.id_for_label }}" class="form-label">{{ form.content.label }}</label>
+            <textarea class="form-control" name="{{ form.content.name }}" id="{{ form.content.id_for_label }}" rows="5" placeholder="{{ form.content.field.widget.attrs.placeholder }}">{{ form.content.value|default:'' }}</textarea>
+            {% if form.content.errors %}
+                <div class="text-danger">
+                    {% for error in form.content.errors %}
+                        <p> * {{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">{% if form.instance.id %}Update{% else %}Submit{% endif %}</button>
+    </form>
+</div>
+{% endblock content %}

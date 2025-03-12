@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Single Post{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card text-center">
+        <div class="card-header">
+          Author : {{post.author}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{post.title|title}}</h5>
+          <div class="container banner">
+            <img src="{{post.banner.url}}" alt="{{post.title}}">
+          </div>
+          <p class="card-text">{{post.content}}</p>
+          <a href={% url 'all_post'%} class="btn btn-primary">Go to All Posts</a>
+        </div>
+        <div class="card-footer text-muted">
+          Published : {{post.published_date}}
+        </div>
+      </div>
+</div>
+{% endblock content %}
