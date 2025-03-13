@@ -17,7 +17,8 @@
           <a href={% url 'all_post'%} class="btn btn-primary">Go to All Posts</a>
         </div>
         <div class="card-footer text-muted">
-          Published : {{post.published_date}}
+          <p>Published : {{post.published_date}}</p>
+          <p>Last Modified : {{post.last_modified}}</p>
         </div>
       </div>
 </div>

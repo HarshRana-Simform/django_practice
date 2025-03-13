@@ -1,8 +1,9 @@
 from django.http import HttpResponseNotFound, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from blog.models import Posts_db
-from blog.forms import add_post
+from blog.forms import add_post, RegisterForm
+from django.contrib.auth import login, logout, authenticate
 
 # Create your views here.
 
@@ -33,13 +34,14 @@ def add_post_form(request, id=None):
         post = None
 
     if request.method == 'POST':
-        form = add_post(request.POST, instance=post)
+        form = add_post(request.POST, request.FILES, instance=post)
         if form.is_valid():
             # ti = form.cleaned_data['title']
             # au = form.cleaned_data['author']
             # co = form.cleaned_data['content']
             # post = Posts_db(title=ti, author=au, content=co)
             # post.save()
+            print(form.cleaned_data())
             form.save()
             return HttpResponseRedirect(reverse('post_success'))
         else:
@@ -67,6 +69,18 @@ def delete_post(request, id):
 def update_post(request, id):
     return add_post_form(request, id=id)
 
+
+def sign_up(request):
+
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+
+    else:
+        form = RegisterForm()
+    return render(request, 'registration/sign_up.html', {'form': form})
 
 # def add_post_form(request):
 

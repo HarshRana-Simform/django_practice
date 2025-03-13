@@ -49,6 +49,11 @@
             {% endif %}
         </div>
 
+        <div class="mb-3">
+            <label for="{{ form.banner.id_for_label }}" class="form-label">{{ form.banner.label }}</label>
+            {{form.banner}}
+        </div>
+
         <!-- Submit Button -->
         <button type="submit" class="btn btn-primary">{% if form.instance.id %}Update{% else %}Submit{% endif %}</button>
     </form>

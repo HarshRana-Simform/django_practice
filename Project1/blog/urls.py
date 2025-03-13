@@ -4,6 +4,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('home/', views.home, name='home'),
     path('all_post/', views.all_post, name='all_post'),
     # Dynamic urls
     path('<int:id>/', views.post, name='post'),
@@ -12,4 +13,5 @@ urlpatterns = [
     path('success/', views.post_success, name='post_success'),
     path('delete/<int:id>/', views.delete_post, name='delete'),
     path('update/<int:id>/', views.update_post, name='update'),
+    path('sign_up/', views.sign_up, name='sign_up'),
 ]
