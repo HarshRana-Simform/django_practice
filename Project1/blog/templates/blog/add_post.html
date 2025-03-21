@@ -7,7 +7,7 @@
 {% block content %}
 <div class="container">
     <h2 class="my-4">{% if form.instance.id %}Update your Post{% else %}Create a New Post{% endif %}</h2>
-    <form action='' method='POST' novalidate>
+    <form action='' method='POST' novalidate enctype="multipart/form-data">
         {% csrf_token %}
 
         <!-- Title Field -->
@@ -24,7 +24,7 @@
         </div>
 
         <!-- Author Field -->
-        <div class="mb-3">
+        {% comment %} <div class="mb-3">
             <label for="{{ form.author.id_for_label }}" class="form-label">{{ form.author.label }}</label>
             <input class="form-control" name="{{ form.author.name }}" id="{{ form.author.id_for_label }}" type="text" placeholder="Enter author name" value="{{ form.author.value|default:'' }}">
             {% if form.author.errors %}
@@ -34,7 +34,7 @@
                     {% endfor %}
                 </div>
             {% endif %}
-        </div>
+        </div> {% endcomment %}
 
         <!-- Content Field -->
         <div class="mb-3">

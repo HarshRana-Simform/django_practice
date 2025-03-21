@@ -41,7 +41,7 @@ from blog.models import Posts_db
 class add_post(forms.ModelForm):
     class Meta:
         model = Posts_db
-        fields = ['title', 'author', 'content', 'banner']
+        fields = ['title', 'content', 'banner']
         widget = {
             'content': forms.Textarea(attrs={'placeholder': 'Enter a description'})
         }
@@ -52,4 +52,4 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password']
+        fields = ['username', 'email', 'password1', 'password2']

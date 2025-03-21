@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load custom_filters %}
 {% block title %}All posts{% endblock title %}
   {% comment %} Django Template Language {% endcomment %}
 {% block content %}
@@ -18,7 +18,7 @@
               <th scope="col">Title</th>
               <th scope="col">Content</th>
               <th scope="col">Author</th>
-              <th scope="col">Actions</th>
+              <th scope="col" class="text-center">Actions</th>
             </tr>
           </thead>
         {% for blog in blogs%}
@@ -35,9 +35,16 @@
               <td>{{blog.content|truncatewords:5}}</td>
               <td>{{blog.author}}</td>
 
-              <td>
+              <td class="text-center">
+                {% if request.user == blog.author or user|has_group:"moderator" or user.is_staff %}
                 <a href="{% url 'update' blog.id  %}"><button type="button" class="btn btn-info">Update</button></a>
                 <a href="{% url 'delete' blog.id  %}"><button type="button" class="btn btn-danger">Delete</button></a>
+                {% if user.is_staff %}
+                <a href="{% url 'ban_user' blog.author.id %}"><button type="button" class="btn btn-warning">Ban User</button></a>
+                {% endif %}
+                {% else %}
+                Not the Author.
+                {% endif %}
               </td>
             </tr>
         {% endfor %}
