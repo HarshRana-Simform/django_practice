@@ -24,10 +24,10 @@
         {% for blog in blogs%}
           <tbody>
             <tr>
-              <td>{{blog.id}}</th>
+              <td>{{forloop.counter}}</th>
 
               <td>
-                <a href={% url "post" blog.id %}>
+                <a href={% url "post" blog.slug %}>
                   {{blog.title|title}}
                 </a>
               </td>

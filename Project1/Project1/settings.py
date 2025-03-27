@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     "blog",
     "crispy_forms",
     "crispy_bootstrap5",
+    "debug_toolbar",
+    "django_extensions",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = ("bootstrap5",)
@@ -55,6 +57,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -152,3 +155,9 @@ LOGIN_REDIRECT_URL = "/home"
 LOGOUT_REDIRECT_URL = "/login"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]

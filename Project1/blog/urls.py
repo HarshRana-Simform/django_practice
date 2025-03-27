@@ -7,7 +7,7 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('all_post/', views.all_post, name='all_post'),
     # Dynamic urls
-    path('<int:id>/', views.post, name='post'),
+    path('<slug:slug>/', views.post, name='post'),
     # path('to_post/<int:id>/', views.to_post),
     path('add_post/', views.add_post_form, name='add_post'),
     path('success/', views.post_success, name='post_success'),

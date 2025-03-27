@@ -8,7 +8,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from blog.decorators import is_super_user, allowed_groups
 from django.db import connection
-
+from django.utils.text import slugify
 # Create your views here.
 
 
@@ -23,10 +23,11 @@ def all_post(request):
     return render(request, 'blog/posts.html', {'blogs': blogs})
 
 
-def post(request, id):
+def post(request, slug):
 
     try:
-        selected_post = Posts_db.objects.get(id=id)
+        print(slug)
+        selected_post = Posts_db.objects.get(slug=slug)
         return render(request, 'blog/single_post.html', {'post': selected_post})
     except Posts_db.DoesNotExist:
         return render(request, '404.html', status=404)
